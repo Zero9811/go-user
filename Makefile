@@ -7,11 +7,11 @@ init:
 	go get github.com/micro/micro/v3/cmd/protoc-gen-micro
 .PHONY: proto
 proto:
-	protoc --proto_path=. --micro_out=. --go_out=:. proto/go-user.proto
+	protoc --proto_path=./ --micro_out=./ --go_out=./ ./proto/user/user.proto
 	
 .PHONY: build
 build:
-	go build -o go-user *.go
+	CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -o go-user *.go
 
 .PHONY: test
 test:
